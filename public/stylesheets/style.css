@@ -1,0 +1,33 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  text-align:center;
+}
+#input{
+}
+.form-group{
+	margin-bottom:5px;
+	}
+a {
+  color: #00B7FF;
+}
+#garden-cell-row
+{
+	display:inline-block;
+}
+.garden-cell
+{
+	width:20px;
+	height:20px;
+	border:solid 1px;
+	background-color:#cc6600;
+	
+}
+.garden-cell:hover{
+	background-color:#ff8c1a;
+}
+.garden-cell-selected
+{
+	background-color:#ff8c1a;
+	
+}

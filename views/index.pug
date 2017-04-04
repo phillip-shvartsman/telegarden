@@ -1,0 +1,24 @@
+extends layout
+
+block content
+	#current
+	#header
+		h1 #{title}
+	#content
+		p Welcome to #{title} 
+	#rpistream
+	#garden-status!= variable
+		#request
+	#input
+		form(id='dataform' action='')
+			div.form-group
+				p Current Available Commands: 'test'
+				label(for='command') Command to Send: 
+				input#command.form-control(type='text',placeholder='Data' name='command')
+			div.form-group
+				label(for='value') Value: 
+				input#value.form-control(type='text',placeholder='value' name='value')
+			button#sendcommand.btn.btn-primary(type='button') Send
+	#result-box
+		h3 Data Received From Pi
+		#results
