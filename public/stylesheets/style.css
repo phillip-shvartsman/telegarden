@@ -1,14 +1,36 @@
+@font-face {
+    font-family: 'Nevis';
+    src: url('fonts/JOKERMAN.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}	
+#garden-table{
+	float:left;
+	padding-left:20px;
+}
+#input{
+	float:left;
+}
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 0px;
+  margin:0px;
+  color:#FFFFFF;
+  font-family: ‘Nevis’;
+  font: 14px;
   text-align:center;
 }
 #input{
+	clear:both;
+}
+#request{
+	display:none;
+	float:left;
 }
 .form-group{
 	margin-bottom:5px;
 	}
-a {
+a 
+{
   color: #00B7FF;
 }
 #garden-cell-row
@@ -17,11 +39,20 @@ a {
 }
 .garden-cell
 {
-	width:20px;
-	height:20px;
-	border:solid 1px;
+	width:100px;
+	height:100px;
+	border:solid 1px #000000;
 	background-color:#cc6600;
 	
+}
+#grass-img{
+	width:100%;
+	position:absolute;
+	bottom: 0;
+	left:0;
+}
+#result-box{
+	clear:both;
 }
 .garden-cell:hover{
 	background-color:#ff8c1a;
@@ -30,4 +61,94 @@ a {
 {
 	background-color:#ff8c1a;
 	
+}
+#top-containers{
+	background-color:#7EC0EE;
+	width:100vw;
+	height:500px;
+	padding-top:10px;
+	position:relative;
+}
+
+#garden-status{
+	width:100vw;
+	height:700px;
+	padding-top:50px;
+	margin: 0px;
+	background: #784800; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#C06000 10%, #784800); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#C06000 10%, #784800); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#C06000 10%, #784800); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#C06000 10%, #784800); /* Standard syntax */
+	
+	position:relative;
+	
+}
+#plant-req-text{
+	float:left;
+	margin-top:0px;
+	margin-left:5px;
+}
+#no-plant-text{
+	margin-top:0px;
+}
+#plant-icon{
+	clear:both;
+	float:left;
+	height:20px;
+	width:20px;
+}
+ul#tabs {
+	margin:0px;
+	list-style-position:inside;
+	width:300px;
+	margin-left:560px;
+	padding:0px;
+	margin-bottom:-2px;
+	}
+
+ul#tabs li {
+	margin-left:5px;
+	list-style:none;
+	display:inline-block;
+	background-color:#ff4000;
+	padding:5px;
+	border-radius:4px 4px 0px 0px;
+}
+ul#tabs li:hover {
+	background-color:#ff5000;
+	z-index:-1;
+	cursor:pointer;
+}
+#display-holder {
+	height:600px;
+	width:500px;
+	background-color:#ff4000;
+	overflow:hidden;
+	padding-left:5px;
+	padding-top:5px;
+	}
+#info{
+	margin: 0 auto;
+}
+
+#title{
+	background-color:#FFFFFF;
+	width:100vw;
+	height:100px;
+	position: relative;
+}
+#osu-logo{
+	height:100px;
+	position: absolute;
+	bottom: 0px;
+	left:0;
+}
+#titleName {
+  padding: 0px;
+  margin:0px;
+  color:#000000;
+  font-family: ‘Nevis’;
+  font-size: 24px;
+  text-align:center;
 }

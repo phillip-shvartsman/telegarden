@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
   
   for(i=0;i<db_res.rows.length;)
   {
-	  send = send + '<div id = "garden-cell-row">';
+	  
 	  end= i + 5;
 	  j = i;
 	  for(;j<=end&&j<=35;j++)
@@ -27,8 +27,7 @@ router.get('/', function(req, res, next) {
 		  //console.log(db_res.rows[0].id);
 		  send = send + '<div class="garden-cell" id = "' + db_res.rows[j].id + '">' +  '</div>';
 		  i++;
-	  }
-	  send = send + '</div>';  
+	  }  
   }
   send = send + '</div>';
   res.locals.variable = send;

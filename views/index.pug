@@ -1,14 +1,36 @@
 extends layout
 
 block content
-	#current
-	#header
-		h1 #{title}
-	#content
-		p Welcome to #{title} 
-	#rpistream
-	#garden-status!= variable
-		#request
+	//#header
+		//h1 Ohio-State
+			//strong #{title}
+	//#content
+		//p Welcome to #{title}
+	#title
+		img(id='osu-logo' src="images/osu_logo.png")
+		#titleName
+			p Telegarden Project
+	#top-containers
+		#rpistream
+			//iframe(width="853" height="480" src="https://www.youtube.com/embed/c-N2j5DESC0" frameborder="0" allowfullscreen)
+			iframe(width="853" height="480" src="https://www.youtube.com/embed/yIYLbf-qHfY" frameborder="0" allowfullscreen)
+		img(id='grass-img' src="images/grass.png")
+	#garden-status
+		#menu
+			ul#tabs
+				strong
+					li#action-tab DO
+				strong
+					li#history-tab HISTORY
+				strong
+					li#social-tab SOCIAL
+				strong
+					li#social-tab Comment
+		#garden-table!=variable
+		#info
+			#display-holder
+				#request
+				#history
 	#input
 		form(id='dataform' action='')
 			div.form-group
