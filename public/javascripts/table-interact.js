@@ -1,5 +1,8 @@
 
 $(document).ready(function(){
+	$('#action-tab').on('click',function(){
+		$(this).toggleClass('selected');
+	});
 	$('.garden-cell').on('click',function(){
 		id = $(this).attr('id');
 		current = $(this);

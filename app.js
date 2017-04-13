@@ -1,18 +1,28 @@
+//Express.js
 var express = require('express'); 
 var path = require('path');
+//Favicon
 var favicon = require('serve-favicon');
+//Logging
 var logger = require('morgan');
+//Parses Cookies
 var cookieParser = require('cookie-parser');
+//Parses Request Bodies
 var bodyParser = require('body-parser');
+//PostgresSQL--don't know if this needs to be here mirrored in index.js
 var pg = require('pg');
-var index = require('./routes/index');
+//Users
 var users = require('./routes/users');
+var index = require('./routes/index')
+
 
 var app = express();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 app.use(bodyParser.json());
+
+
 
 app.use(bodyParser.urlencoded({ extended: false })); //Parses the body of a request
 // uncomment after placing your favicon in /public

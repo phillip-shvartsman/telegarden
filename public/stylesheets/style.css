@@ -6,7 +6,10 @@
 }	
 #garden-table{
 	float:left;
-	padding-left:20px;
+	max-width:700px;
+	max-height:700px;
+	display:inline-block;
+	margin-top:28px;
 }
 #input{
 	float:left;
@@ -33,7 +36,7 @@ a
 {
   color: #00B7FF;
 }
-#garden-cell-row
+.garden-cell-row
 {
 	display:inline-block;
 }
@@ -62,24 +65,29 @@ a
 	background-color:#ff8c1a;
 	
 }
-#top-containers{
+#top-container{
 	background-color:#7EC0EE;
 	width:100vw;
 	height:500px;
 	padding-top:10px;
 	position:relative;
 }
-
-#garden-status{
+#shader {
 	width:100vw;
-	height:700px;
-	padding-top:50px;
-	margin: 0px;
+	height:100px;
 	background: #784800; /* For browsers that do not support gradients */
     background: -webkit-linear-gradient(#C06000 10%, #784800); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(#C06000 10%, #784800); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(#C06000 10%, #784800); /* For Firefox 3.6 to 15 */
     background: linear-gradient(#C06000 10%, #784800); /* Standard syntax */
+	position:relative;
+}
+#garden-status{
+	width:100vw;
+	height:700px;
+	padding-top:50px;
+	margin: 0px;
+	background-color: #784800; /* For browsers that do not support gradients */
 	
 	position:relative;
 	
@@ -98,13 +106,16 @@ a
 	height:20px;
 	width:20px;
 }
+#menu {
+	float:left;
+	clear:both;
+}
 ul#tabs {
 	margin:0px;
 	list-style-position:inside;
-	width:300px;
-	margin-left:560px;
+	margin:0px;
 	padding:0px;
-	margin-bottom:-2px;
+	margin-bottom:0px;
 	}
 
 ul#tabs li {
@@ -120,29 +131,31 @@ ul#tabs li:hover {
 	z-index:-1;
 	cursor:pointer;
 }
-#display-holder {
-	height:600px;
-	width:500px;
+li.selected {
 	background-color:#ff4000;
-	overflow:hidden;
+}
+#display-holder {
+	height:607px;
+	width:607px;
+	clear:both;
+	background-color:#ff4000;
 	padding-left:5px;
 	padding-top:5px;
 	}
-#info{
-	margin: 0 auto;
-}
 
-#title{
-	background-color:#FFFFFF;
+
+#bottom{
+	background-color:#784800;
 	width:100vw;
-	height:100px;
-	position: relative;
+	height:150px;
+	position:relative;
 }
 #osu-logo{
 	height:100px;
 	position: absolute;
-	bottom: 0px;
+	top: 0px;
 	left:0;
+	z-index:20;
 }
 #titleName {
   padding: 0px;
@@ -151,4 +164,13 @@ ul#tabs li:hover {
   font-family: ‘Nevis’;
   font-size: 24px;
   text-align:center;
+}
+#right-side {
+	float:left;
+	max-height:700px;
+	display:inline-block;
+}
+#main {
+	margin: 0 auto;
+	display:inline-block;
 }

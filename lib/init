@@ -1,0 +1,19 @@
+const passport = require('passport');
+const pool = require('../lib/db');
+
+module.exports = () => {
+	passport.serializeUser((user,done) => {
+		done(null,user,id);
+	});
+	passport.deserializeUser((id,done) => {
+		pool.query('SELECT * FROM users WHERE', function(err, db_res) {
+		if(err) {
+		return console.error('error running query', err);
+		res.locals.variable = 'ERROR RUNING QUERY';
+		res.render('index', { title: 'Telepresence Project' });
+		}
+
+	});
+		
+	});
+}

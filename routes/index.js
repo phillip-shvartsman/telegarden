@@ -5,7 +5,19 @@ var request = require('request');
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 var jsonParser = bodyParser.json()
 const getTime = require('get-time'); //Get the time module, currently not being used.
-/* GET home page. */
+//const flash = require('flash');
+const passport = require('passport');
+const session = require('express-session');
+router.use(session({
+	secret:"bestgoddamngardenintheworld",
+	resave: false,
+	saveUninitialized: true
+	}));
+
+router.use(passport.initialize());
+router.use(passport.session());
+//router.use(flash());
+
 var pool = require('../lib/db');
 
 router.get('/', function(req, res, next) {
@@ -15,11 +27,11 @@ router.get('/', function(req, res, next) {
 	res.locals.variable = 'ERROR RUNING QUERY';
 	res.render('index', { title: 'Telepresence Project' });
   }
-  var send = '<div id="garden-table">'
+  var send = "";
   
   for(i=0;i<db_res.rows.length;)
   {
-	  
+	  send = send + '<div class="garden-cell-row">';
 	  end= i + 5;
 	  j = i;
 	  for(;j<=end&&j<=35;j++)
@@ -28,14 +40,16 @@ router.get('/', function(req, res, next) {
 		  send = send + '<div class="garden-cell" id = "' + db_res.rows[j].id + '">' +  '</div>';
 		  i++;
 	  }  
+	  send = send + '</div>';
   }
-  send = send + '</div>';
+  //send = send + '</div>';
   res.locals.variable = send;
   res.render('index', { title: 'Telepresence Project' });
   //console.log(res.locals.variable);
   });
   
 });
+
 router.post('/get-status',jsonParser,function(req,res,next){
   
   if(req.body.id%1==0)

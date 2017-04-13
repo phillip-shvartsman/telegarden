@@ -1,46 +1,43 @@
 extends layout
 
 block content
-	//#header
-		//h1 Ohio-State
-			//strong #{title}
-	//#content
-		//p Welcome to #{title}
-	#title
-		img(id='osu-logo' src="images/osu_logo.png")
-		#titleName
-			p Telegarden Project
-	#top-containers
+	#top-container
 		#rpistream
 			//iframe(width="853" height="480" src="https://www.youtube.com/embed/c-N2j5DESC0" frameborder="0" allowfullscreen)
 			iframe(width="853" height="480" src="https://www.youtube.com/embed/yIYLbf-qHfY" frameborder="0" allowfullscreen)
-		img(id='grass-img' src="images/grass.png")
+		img(id='grass-img' src="images/grass-small.png")
+	#shader
 	#garden-status
-		#menu
-			ul#tabs
-				strong
-					li#action-tab DO
-				strong
-					li#history-tab HISTORY
-				strong
-					li#social-tab SOCIAL
-				strong
-					li#social-tab Comment
-		#garden-table!=variable
-		#info
-			#display-holder
-				#request
-				#history
-	#input
-		form(id='dataform' action='')
-			div.form-group
-				p Current Available Commands: 'test'
-				label(for='command') Command to Send: 
-				input#command.form-control(type='text',placeholder='Data' name='command')
-			div.form-group
-				label(for='value') Value: 
-				input#value.form-control(type='text',placeholder='value' name='value')
-			button#sendcommand.btn.btn-primary(type='button') Send
-	#result-box
-		h3 Data Received From Pi
-		#results
+		#main
+			#garden-table!=variable
+			#right-side
+				#menu
+						ul#tabs
+							strong
+								li#action-tab DO
+							strong
+								li#history-tab HISTORY
+							strong
+								li#social-tab SOCIAL
+							strong
+								li#social-tab COMMENT
+				#display-holder
+					#request
+					#history
+	#bottom
+		img(id='osu-logo' href="http://www.osu.edu" target="_blank" src="images/osu_logo.png")
+		#titleName Telegarden Project
+	#admin
+	//#input
+		//form(id='dataform' action='')
+			//div.form-group
+				//p Current Available Commands: 'test'
+				//label(for='command') Command to Send: 
+				//input#command.form-control(type='text',placeholder='Data' name='command')
+			//div.form-group
+				//label(for='value') Value: 
+				//input#value.form-control(type='text',placeholder='value' name='value')
+			//button#sendcommand.btn.btn-primary(type='button') Send
+	//#result-box
+		//h3 Data Received From Pi
+		//#results
