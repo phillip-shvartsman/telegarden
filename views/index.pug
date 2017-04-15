@@ -8,6 +8,22 @@ block content
 		img(id='grass-img' src="images/grass-small.png")
 	#shader
 	#garden-status
+		if !user
+			button#login-button(type='button') Login
+			#login
+			form(id='login-form' action='/login' method='POST')
+				label(for='username') Enter Username:
+				input#username.form-control(type='text',placeholder='Username' name='username')
+				label(for='password') Enter Password: 
+				input#password.form-control(type='text',placeholder='Password' name='password')
+				input.form-control(type='submit' value='Submit')
+		else
+			#current-login
+				p= user.username
+				if user.admin
+				p YOU ARE LOGGED IN AS ADMIN	
+					#requests
+			
 		#main
 			#garden-table!=variable
 			#right-side

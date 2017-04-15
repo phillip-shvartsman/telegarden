@@ -1,26 +1,76 @@
+//const authHelpers = require('../lib/_helpers');
+//const passport = require('../lib/local');
+//router.use(flash());
+
+/*function handleResponse(res, code, statusMsg) {
+  res.status(code).json({status: statusMsg});
+}*/
+var pool = require('../lib/db');
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser')
 var request = require('request');
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
+router.use(require('cookie-parser')());
 var jsonParser = bodyParser.json()
 const getTime = require('get-time'); //Get the time module, currently not being used.
 //const flash = require('flash');
 const passport = require('passport');
+const Strategy = require('passport-local').Strategy;
 const session = require('express-session');
+var pool = require('../lib/db');
+
+passport.use(new Strategy(
+	function(username,password,cb) {
+		pool.query("SELECT * FROM users WHERE username = '" + username +"'", function(err,user) {
+			//console.log(user);
+			if(err){
+				console.log(err);
+				return cb(err);}
+			if(user.rowCount==0){
+				console.log("User Doesn't Exist");
+				return cb(null,false);}
+			if(user.rows[0].password != password || password == "") {
+				console.log("User Password is Wrong");
+				return cb(null,false);}
+			
+			return cb(null,user.rows[0]);
+		});
+}));
+passport.serializeUser(function(user,cb){
+	console.log("SERIALIZE USER");
+	console.log(user.id);
+	cb(null,user.id);
+});
+passport.deserializeUser(function(id,cb) {
+	console.log("DESERIALIZE USER");
+	pool.query('SELECT * FROM users WHERE id = ' + id , function(err,user) {
+		if(err) {return cb(err);}
+		cb(null,user.rows[0]);
+	});
+	
+});
 router.use(session({
 	secret:"bestgoddamngardenintheworld",
 	resave: false,
-	saveUninitialized: true
+	saveUninitialized: true,
+	cookie: {
+		secure: false
+	}
 	}));
-
 router.use(passport.initialize());
 router.use(passport.session());
-//router.use(flash());
 
-var pool = require('../lib/db');
 
+
+router.post('/login',
+	passport.authenticate('local',{failureRedirect:'/'}),
+	function(req,res){
+			//console.log(res.req.user);
+			res.redirect('/');
+	});
 router.get('/', function(req, res, next) {
+  console.log("REQ_USER" + req.user);
   pool.query('SELECT * FROM garden_status', function(err, db_res) {
   if(err) {
     return console.error('error running query', err);
@@ -44,7 +94,15 @@ router.get('/', function(req, res, next) {
   }
   //send = send + '</div>';
   res.locals.variable = send;
-  res.render('index', { title: 'Telepresence Project' });
+  console.log(res.user);
+  if(res.user){
+	res.render('index', {title: 'Telepresence Project' });
+  }
+  else
+  {
+	console.log("WEOUTHERE");
+	res.render('index', {user: req.user, title: 'Telepresence Project' })
+  }
   //console.log(res.locals.variable);
   });
   
@@ -66,7 +124,7 @@ router.post('/get-status',jsonParser,function(req,res,next){
   
 });
 router.post('/command',jsonParser,function(req,res,next){
-	//console.log("Command Send with Post");
+	console.log(res);
 	
 	if(req.body.command!="water")
 	{
