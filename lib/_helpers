@@ -1,0 +1,15 @@
+const bcrypt = require('bcryptjs');
+const pool = require('./db');
+function comparePass(userPassword,databasePassword) {
+	return bcrypt.compareSync(userPassword,databasePassword);
+}
+function createUser(req) {
+	const salt = bcyrpt.genSaltSync();
+	const hash = bcyrpt.hashSync(req.body.password,salt);
+	pool.query('INSERT INTO users(username,password) VALUES(' + req.body.username+',' + hash +')',function(err,db_res));
+	return('*');
+})
+module.exports = {
+	comparePass,
+	createUser
+};
