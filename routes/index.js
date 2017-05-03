@@ -71,7 +71,7 @@ router.post('/login',
 	});
 router.get('/', function(req, res, next) {
   console.log("REQ_USER" + req.user);
-  pool.query('SELECT * FROM garden_status', function(err, db_res) {
+  pool.query('SELECT * FROM garden_status ORDER BY id;', function(err, db_res) {
   if(err) {
     return console.error('error running query', err);
 	res.locals.variable = 'ERROR RUNING QUERY';
@@ -109,11 +109,12 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/get-status',jsonParser,function(req,res,next){
-  
+  console.log(req.body);
   if(req.body.id%1==0)
   {
-	  pool.query('SELECT * FROM garden_status WHERE id ='+req.body.id, function(err, db_res) {
+	  pool.query("SELECT * FROM garden_status WHERE id ="+req.body.id, function(err, db_res) {
 		res.json({data:db_res,complete:true});
+		//console.log(db_res);
 		res.end();
 	  });
   }
@@ -121,8 +122,26 @@ router.post('/get-status',jsonParser,function(req,res,next){
   {
 	res.json({complete:false});
   }
-  
 });
+
+router.post('/update-status',jsonParser,function(req,res,next){
+  console.log(req.body);
+  if(req.body.command=='plant'){
+	  pool.query("UPDATE garden_status SET plant_type="+req.body.plant_type+", planted="+req.body.planted+" WHERE id="+req.body.id, function(err, db_res){
+		  if(err){
+			  console.log(err);
+			  res.json({data:db_res,complete:false});
+			  //console.log(db_res);
+			  res.end();
+		  }else{
+			  res.json({data:db_res,complete:true});
+			  //console.log(db_res);
+			  res.end();
+		  }
+	  });
+  }
+});
+
 router.post('/command',jsonParser,function(req,res,next){
 	console.log(res);
 	

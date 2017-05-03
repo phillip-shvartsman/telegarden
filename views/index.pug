@@ -30,16 +30,44 @@ block content
 				#menu
 						ul#tabs
 							strong
-								li#action-tab DO
+								li#info-tab INFORMATION
 							strong
-								li#history-tab HISTORY
+								li#plant-tab PLANTATION
 							strong
-								li#social-tab SOCIAL
+								li#schedule-tab SCHEDULE
 							strong
 								li#social-tab COMMENT
 				#display-holder
-					#request
-					#history
+					#info
+						#no-plant
+							h2(id='no-plant-text') Nothing Planted Here
+							img(src='/images/plant.png' id='plant-icon')
+							h2(id='plant-req-text') Plant
+						#has-plant
+							//h2(id='plant-wiki') hahaha
+							#info-name 
+					#plantat
+						#water-button
+							img(src='/images/watering.png' id='watering-img')
+						#destroy-button
+							//img(src='/images/destroying.png' id='destroy-img')	
+						#planting-area
+							h2 Planting
+							span Select Plant: 
+							select(id='plant-choose') 
+								optgroup(label='VEGETABLE')
+									option(value='cabbage') Cabbage
+									option(value='cucumber') Cucumber
+								optgroup(label='FRUIT')
+									option(value='cherrytomato') Cherry Tomato
+									option(value='apple') Apple
+								optgroup(label='FLOWER/GREEN LEAF')
+									option(value='carnation') Carnation
+									option(value='matthiolaincana') Matthiola Incana
+							#plant-button Plant!
+							#plant-feedback
+					//#request
+					//#history
 	#bottom
 		img(id='osu-logo' href="http://www.osu.edu" target="_blank" src="images/osu_logo.png")
 		#titleName Telegarden Project
